@@ -15,6 +15,7 @@ public class SinglyLinkedList {
 	
 	// my implementation ----------------------------------
 	public void printSLL() {
+		System.out.println();
 		ListNode current = head;
 		while(current != null) {
 			System.out.print(current.data + " --> ");
@@ -224,7 +225,18 @@ public class SinglyLinkedList {
 	}
 	
 	//Dinesh Implementation
-	
+	public void removeDuplicatesFromSorted() {
+		if(head == null) return;
+		
+		ListNode current = head;
+		while(current != null && current.next != null) {
+			if(current.data == current.next.data) {
+				current.next = current.next.next;
+			} else {
+				current = current.next;
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		SinglyLinkedList sll = new SinglyLinkedList();
@@ -244,13 +256,13 @@ public class SinglyLinkedList {
 		//sll.insertEnd(8);
 		//sll.insertEnd(10);
 		
-		sll.insertGivenPosition(9, 1);
-		sll.insertGivenPosition(8, 2);
-		sll.insertGivenPosition(3, 1);
-		sll.insertGivenPosition(4, 2);
+		sll.insertGivenPosition(2, 1);
 		sll.insertGivenPosition(1, 2);
-		sll.insertGivenPosition(11, 2);
-		sll.insertGivenPosition(22, 2);
+		sll.insertGivenPosition(1, 3);
+		sll.insertGivenPosition(3, 4);
+		sll.insertGivenPosition(2, 5);
+		sll.insertGivenPosition(2, 6);
+		sll.insertGivenPosition(4, 7);
 		//3 --> 4 --> 9 --> 8 --> NULL
 		
 		//sll.deleteFirst();
@@ -259,13 +271,16 @@ public class SinglyLinkedList {
 		//sll.delete(1);
 		
 		//ListNode newHead = sll.reverseSLL();
+		sll.printSLL();
+		
+		sll.removeDuplicatesFromSorted();
 		
 		sll.printSLL();
-		int element = sll.findNfNodeFromTheEnd(4).data;
+		int nth = 1, element = sll.findNfNodeFromTheEnd(nth).data;
 		System.out.println("");
 		System.out.println("The length of sll is " + sll.sllLength() + "\n");
 		System.out.println("Middle: " + sll.findMiddleSLL().data);
-		System.out.println("Ntf element: " + element);
+		System.out.println("Ntf element for("+nth+") : " + element);
 		//System.out.println("Result for search " + sll.searchElement(4));
 	}
 }
