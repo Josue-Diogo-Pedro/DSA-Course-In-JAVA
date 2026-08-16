@@ -25,6 +25,10 @@ public class SinglyLinkedList {
 	}
 	
 	public void printSLL(ListNode headNode) {
+		if(headNode == null) return;
+		
+		System.out.println();
+		
 		ListNode current = headNode;
 		while(current != null) {
 			System.out.print(current.data + " --> ");
@@ -238,6 +242,23 @@ public class SinglyLinkedList {
 		}
 	}
 	
+	//Dinesh implementation
+	public ListNode insertNodeSortedSLL(int value) {
+		if(head == null) return null;
+		
+		ListNode newNode = new ListNode(value);
+		ListNode current = head;
+		ListNode temp = null;
+		while(current != null && current.data < newNode.data) {
+			temp = current;
+			current = current.next;
+		}
+		
+		newNode.next = current;
+		temp.next = newNode;
+		return head;
+	}
+	
 	public static void main(String[] args) {
 		SinglyLinkedList sll = new SinglyLinkedList();
 		//sll.head = new ListNode(10);
@@ -256,13 +277,10 @@ public class SinglyLinkedList {
 		//sll.insertEnd(8);
 		//sll.insertEnd(10);
 		
-		sll.insertGivenPosition(2, 1);
+		sll.insertGivenPosition(1, 1);
 		sll.insertGivenPosition(1, 2);
-		sll.insertGivenPosition(1, 3);
-		sll.insertGivenPosition(3, 4);
-		sll.insertGivenPosition(2, 5);
-		sll.insertGivenPosition(2, 6);
-		sll.insertGivenPosition(4, 7);
+		sll.insertGivenPosition(4, 3);
+		sll.insertGivenPosition(7, 4);
 		//3 --> 4 --> 9 --> 8 --> NULL
 		
 		//sll.deleteFirst();
@@ -275,7 +293,9 @@ public class SinglyLinkedList {
 		
 		sll.removeDuplicatesFromSorted();
 		
-		sll.printSLL();
+		ListNode newHead = sll.insertNodeSortedSLL(5);
+		
+		sll.printSLL(newHead);
 		int nth = 1, element = sll.findNfNodeFromTheEnd(nth).data;
 		System.out.println("");
 		System.out.println("The length of sll is " + sll.sllLength() + "\n");
