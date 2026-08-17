@@ -259,6 +259,20 @@ public class SinglyLinkedList {
 		return head;
 	}
 	
+	//Dinesh Implementation
+	public void removeGivenKeySortedSLL(int key) {
+		if(head == null) return;
+		
+		ListNode current = head;
+		ListNode temp = null;
+		while(current != null && current.data != key) {
+			temp = current;
+			current = current.next;
+		}
+		if(current == null) return;
+		temp.next = current.next;
+	}
+	
 	public static void main(String[] args) {
 		SinglyLinkedList sll = new SinglyLinkedList();
 		//sll.head = new ListNode(10);
@@ -296,6 +310,9 @@ public class SinglyLinkedList {
 		ListNode newHead = sll.insertNodeSortedSLL(5);
 		
 		sll.printSLL(newHead);
+		
+		sll.removeGivenKeySortedSLL(4);
+		sll.printSLL();
 		int nth = 1, element = sll.findNfNodeFromTheEnd(nth).data;
 		System.out.println("");
 		System.out.println("The length of sll is " + sll.sllLength() + "\n");
