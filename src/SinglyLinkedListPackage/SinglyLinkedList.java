@@ -306,7 +306,7 @@ public class SinglyLinkedList {
 		third.next = fourth;
 		fourth.next = fifth;
 		fifth.next = sixth;
-		sixth.next = third;
+		sixth.next = first;
 	}
 	
 	//Dinesh implementation
@@ -348,7 +348,7 @@ public class SinglyLinkedList {
 			fastPtr = fastPtr.next.next;
 			slowPtr = slowPtr.next;
 			if(slowPtr == fastPtr) {
-				removeLoop(slowPtr);
+				makeLastNodeNull(slowPtr);
 				return;
 			}
 		}
@@ -361,6 +361,23 @@ public class SinglyLinkedList {
 			slowPtr = slowPtr.next;
 		}
 		
+		slowPtr.next = null;
+	}
+	
+	public void makeLastNodeNull(ListNode slowPtr) {
+		System.out.println("slowPtr: " + slowPtr.data);
+		ListNode temp = head;
+		if(temp == slowPtr) {
+			while(slowPtr.next != temp) {
+				slowPtr = slowPtr.next;
+			}
+			slowPtr.next = null;
+			return;
+		}
+		while(temp.next !=  slowPtr.next) {
+			temp = temp.next;
+			slowPtr = slowPtr.next;
+		}
 		slowPtr.next = null;
 	}
 	
