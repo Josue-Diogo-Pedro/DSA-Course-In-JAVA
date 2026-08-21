@@ -309,6 +309,34 @@ public class SinglyLinkedList {
 		sixth.next = third;
 	}
 	
+	//Dinesh implementation
+	public ListNode findStartLoopInSLL() {
+		if(head == null) return null;
+		
+		ListNode fastPtr = head;
+		ListNode slowPtr = head;
+		
+		while(fastPtr != null && fastPtr.next != null) {
+			fastPtr = fastPtr.next.next;
+			slowPtr = slowPtr.next;
+			if(slowPtr == fastPtr) {
+				return getStartingNode(slowPtr);
+			}
+		}
+		
+		return null;
+	}
+	
+	public ListNode getStartingNode(ListNode slowPtr) {
+		ListNode temp = head;
+		while(slowPtr != temp) {
+			temp = temp.next;
+			slowPtr = slowPtr.next;
+		}
+		
+		return temp;
+	}
+	
 	public static void main(String[] args) {
 		SinglyLinkedList sll = new SinglyLinkedList();
 		//sll.head = new ListNode(10);
@@ -359,5 +387,7 @@ public class SinglyLinkedList {
 		//System.out.println("Ntf element for("+nth+") : " + element);
 		//System.out.println("Result for search " + sll.searchElement(4));
 		System.out.println("Is loop SLL: " + sll.detectLoopInSLL());
+		System.out.println("Start node of Loop: " + sll.findStartLoopInSLL().data);
+		
 	}
 }
