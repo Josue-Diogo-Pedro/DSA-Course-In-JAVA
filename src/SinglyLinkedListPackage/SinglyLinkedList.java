@@ -273,6 +273,42 @@ public class SinglyLinkedList {
 		temp.next = current.next;
 	}
 	
+	//Dinesh implementation
+	public boolean detectLoopInSLL() {
+		
+		if(head == null) return false;
+		
+		ListNode fastPtr = head;
+		ListNode slowPtr = head;
+		
+		while(fastPtr != null && fastPtr.next != null) {
+			fastPtr = fastPtr.next.next;
+			slowPtr = slowPtr.next;
+			if(slowPtr == fastPtr) {
+				return true;
+			} 
+		}
+		
+		return false;
+	}
+	
+	public void createLoopInSLL() {
+		ListNode first = new ListNode(1);
+		ListNode second = new ListNode(2);
+		ListNode third = new ListNode(3);
+		ListNode fourth = new ListNode(4);
+		ListNode fifth = new ListNode(5);
+		ListNode sixth = new ListNode(6);
+	
+		head = first;
+		first.next = second;
+		second.next = third;
+		third.next = fourth;
+		fourth.next = fifth;
+		fifth.next = sixth;
+		sixth.next = third;
+	}
+	
 	public static void main(String[] args) {
 		SinglyLinkedList sll = new SinglyLinkedList();
 		//sll.head = new ListNode(10);
@@ -291,10 +327,10 @@ public class SinglyLinkedList {
 		//sll.insertEnd(8);
 		//sll.insertEnd(10);
 		
-		sll.insertGivenPosition(1, 1);
-		sll.insertGivenPosition(1, 2);
-		sll.insertGivenPosition(4, 3);
-		sll.insertGivenPosition(7, 4);
+		//sll.insertGivenPosition(1, 1);
+		//sll.insertGivenPosition(1, 2);
+		//sll.insertGivenPosition(4, 3);
+		//sll.insertGivenPosition(7, 4);
 		//3 --> 4 --> 9 --> 8 --> NULL
 		
 		//sll.deleteFirst();
@@ -303,21 +339,25 @@ public class SinglyLinkedList {
 		//sll.delete(1);
 		
 		//ListNode newHead = sll.reverseSLL();
-		sll.printSLL();
 		
-		sll.removeDuplicatesFromSorted();
+		sll.createLoopInSLL();
 		
-		ListNode newHead = sll.insertNodeSortedSLL(5);
+		//sll.printSLL();
 		
-		sll.printSLL(newHead);
+		//sll.removeDuplicatesFromSorted();
 		
-		sll.removeGivenKeySortedSLL(4);
-		sll.printSLL();
-		int nth = 1, element = sll.findNfNodeFromTheEnd(nth).data;
+		//ListNode newHead = sll.insertNodeSortedSLL(5);
+		
+		//sll.printSLL(newHead);
+		
+		//sll.removeGivenKeySortedSLL(4);
+		//sll.printSLL();
+		//int nth = 1, element = sll.findNfNodeFromTheEnd(nth).data;
 		System.out.println("");
-		System.out.println("The length of sll is " + sll.sllLength() + "\n");
-		System.out.println("Middle: " + sll.findMiddleSLL().data);
-		System.out.println("Ntf element for("+nth+") : " + element);
+		//System.out.println("The length of sll is " + sll.sllLength() + "\n");
+		//System.out.println("Middle: " + sll.findMiddleSLL().data);
+		//System.out.println("Ntf element for("+nth+") : " + element);
 		//System.out.println("Result for search " + sll.searchElement(4));
+		System.out.println("Is loop SLL: " + sll.detectLoopInSLL());
 	}
 }
